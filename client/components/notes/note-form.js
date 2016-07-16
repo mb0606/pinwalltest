@@ -13,6 +13,24 @@ class NoteForm extends Component {
 
       this.props.createNote({ title, content, img, categories, tags }, userId, orgId)
     }
+    renderCategories(){
+      if(!this.props.categories){
+        return (
+          <div className="alert alert-notice">
+            Your orgaization has no categories
+          </div>
+        )
+      }
+      return (
+        <div className="alert alert-notice">
+          Your orgaization has no categories
+        </div>
+      )
+
+
+
+
+    }
 
 
     render () {
@@ -43,9 +61,16 @@ class NoteForm extends Component {
                             <div className="form-group">
                               <input { ...img } className="form-control" placeholder="Image url http://image.com"/>
                             </div>
-                            <div className="form-group">
-                              <input type="text" className="form-control" placeholder="Category" { ...categories }/>
+
+                            <div>
+                            <label>Please select from the list of Categories</label>
+                            <div className="form-select">
+                            <select multiple className="form-control" { ...categories }>
+                            { this.props.categories.map( category => <option key={category.id} value={category.id}>{category.title}</option>) }
+                            </select>
                             </div>
+                            </div>
+
                             <div className="form-group">
                               <input type="text" className="form-control" placeholder="Tags" { ...tags } />
                             </div>
@@ -69,9 +94,13 @@ function validate(values){
   console.log("In val fn")
 }
 
+function mapStateToProps(state) {
+  console.log("FORM this cat", state.categories)
+  return { categories: state.categories.categories};
+}
 
 export default reduxForm({
     form: NoteForm,
     fields: ['title', 'content', 'img', 'categories', 'tags'],
     validate
-}, null , { createNote })(NoteForm)
+}, mapStateToProps , { createNote })(NoteForm)

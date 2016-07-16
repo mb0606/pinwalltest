@@ -37,7 +37,7 @@ class NavBar extends Component {
               <li> <Link to={"/organizations/" + "1" + "/" +
                "users/1" + "/notes"}>Create Note </Link></li>
                <li>  <a href="#">Login</a> </li>
-               <li>  <a href="#">Sign up</a> </li>
+               <li>  <a href="#">Logout</a> </li>
 
               </ul>
             </div>{/* /.navbar-collapse */}

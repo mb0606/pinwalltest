@@ -8,7 +8,7 @@ import { fetchNotes } from '../actions/notes.js';
 class Categories extends Component {
 
   renderCategories() {
-    let orgId = 1
+    let orgId = 1;
     console.log("inside render CAT ")
     return this.props.categories.map(category => {
       return (

@@ -44,9 +44,16 @@ class NoteFormEdit extends Component {
                             <div className="form-group">
                               <input className="form-control" placeholder="Image url http://image.com" { ...img }/>
                             </div>
-                            <div className="form-group">
-                              <input type="text" className="form-control" placeholder="Category" { ...categories }/>
+
+                            <div>
+                              <label>Please select from the list of Categories</label>
+                              <div className="form-select">
+                              <select multiple className="form-control" { ...categories }>
+                                { this.props.categories.map( category => <option key={category.id} value={category.id}>{category.title}</option>) }
+                              </select>
+                              </div>
                             </div>
+
                             <div className="form-group">
                               <input type="text" className="form-control" placeholder="Tags" { ...tags } />
                             </div>
@@ -72,7 +79,10 @@ function validate(values){
 
 function mapStateToProps(state) {
   console.log("state to prop in MAP",state.notes.note)
-  return {initialValues: state.notes.note};
+  console.log(state.notes.noteCats)
+  state.notes.note['categories'] = [];
+  state.notes.note['categories'] = state.notes.noteCats.map( noteCat => noteCat.id )
+  return {initialValues: state.notes.note, categories: state.categories.categories};
 }
 
 

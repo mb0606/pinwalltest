@@ -1,16 +1,16 @@
 import axios              from 'axios';
 import { browserHistory } from 'react-router';
-import { NOTES, CURRENT_NOTE, CREATE_NOTE, DESTROY_NOTE, UPDATE_NOTE} from './types'
+import { NOTES, CURRENT_NOTE, CREATE_NOTE, DESTROY_NOTE, UPDATE_NOTE, NOTE_CAT} from './types'
 
 // Base Root
 const ROOT_URL = 'http://localhost:3000';
 
 
 export function fetchNotes(orgId, catId) {
- let url = `${ROOT_URL}/api/organizations/1`;
- url = catId ? url + `/categories/${categoryId}` : url + '/notes';
-   return function(dispatch) {
-     axios.get(url)
+  let baseurl = `${ROOT_URL}/api/organizations/${orgId}`;
+  let url = catId ? baseurl  + `/categories/${catId}` : baseurl  + '/notes';
+  return function(dispatch) {
+    axios.get(url)
      .then(function(response) {
        console.log('payload in fetchNotes=', response);
        dispatch({ type: NOTES, payload: response });
@@ -34,6 +34,27 @@ export function showEditNote(note) {
      payload: note
    }
 }
+export function getNoteCat(noteId) {
+  console.log("HELLO get note CAT ::", noteId)
+  let url = `${ROOT_URL}/api/organizations/1/notes/${noteId}/categories`;
+      return function(dispatch) {
+        axios.get(url)
+        .then(response => {
+          console.log("this IS CAT :: response ", response)
+           dispatch({ type: NOTE_CAT , payload: response.data});
+        })
+        .catch(() => {
+            console.log("in catch err ");
+
+        });
+      }
+    // return {
+    //     type: NOTE_CAT,
+    //     payload: "Hello"
+    //   }
+
+}
+
 
 export function createNote(formProps, userId, orgId){
   console.log("Inside create", formProps);

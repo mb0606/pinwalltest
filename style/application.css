@@ -7,7 +7,7 @@
  }
 
  body {
-   font-family: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+  font-family: 'Roboto',"Open Sans", "Helvetica Neue", Helvetica, sans-serif;
  }
 
  a {
@@ -114,7 +114,7 @@ a:active, a:focus ,a:visited {
    border: none;
    outline: none;
    background: #33CD99;
-   padding: 1rem 3.5rem;
+   padding: 1em 3.5em;
    border-radius: 2rem;
  }
  button a, .button a {
@@ -124,7 +124,7 @@ a:active, a:focus ,a:visited {
 
  .button {
    color: white;
-   margin: 2rem 0;
+   margin: 0.5em 0;
  }
 
  a {
@@ -194,6 +194,9 @@ a:active, a:focus ,a:visited {
 }
 .form-wrapper{
   padding:25px;
+}
+.form-select {
+  margin-bottom: 1em;
 }
  input[type="text"], input[type="email"], input[type="date"], input[type="password"], textarea {
    width: 100%;

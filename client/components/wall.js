@@ -13,7 +13,7 @@ import Categories from './categories.js';
 export default class Wall extends Component {
 
   componentWillMount() {
-    this.props.fetchNotes();
+    this.props.fetchNotes(this.props.params.orgId);
     this.props.fetchCategories();
 
   }
