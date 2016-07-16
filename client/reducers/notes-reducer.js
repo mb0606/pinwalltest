@@ -3,10 +3,10 @@ import { NOTES, CURRENT_NOTE, UPDATE_NOTE } from '../actions/types'
 const INITIAL_STATE = { all: [], note:null };
 
 
-export default function (state = INITIAL_STATE, action) {
+export default function ( state = INITIAL_STATE, action) {
   switch(action.type) {
     case NOTES:
-    console.log("line 8 ", action.payload)
+    console.log("line 9 ", action.payload)
       return {...state, all: action.payload.data }
     case CURRENT_NOTE:
       console.log("line 12 ", action.payload)

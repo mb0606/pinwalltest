@@ -6,9 +6,9 @@ import { NOTES, CURRENT_NOTE, CREATE_NOTE, DESTROY_NOTE, UPDATE_NOTE} from './ty
 const ROOT_URL = 'http://localhost:3000';
 
 
-export function fetchNotes(organizationId, categoryId) {
- let url = `${ROOT_URL}/api/organizations/1/notes`;
- // url = categoryId ? url + `/categories/${categoryId}` : url + '/notes';
+export function fetchNotes(orgId, catId) {
+ let url = `${ROOT_URL}/api/organizations/1`;
+ url = catId ? url + `/categories/${categoryId}` : url + '/notes';
    return function(dispatch) {
      axios.get(url)
      .then(function(response) {

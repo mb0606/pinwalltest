@@ -9,9 +9,9 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // components and reducers from our app
 import App          from './components/app';
 import Wall         from './components/wall';
-import Note         from './components/show-note';
-import NoteForm     from './components/note-form';
-import NoteFormEdit from './components/note-form-edit';
+import Note         from './components/notes/show-note';
+import NoteForm     from './components/notes/note-form';
+import NoteFormEdit from './components/notes/note-form-edit';
 import reducers     from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);

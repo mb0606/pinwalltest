@@ -1,5 +1,12 @@
+#categories {
+  text-align: center;
+  padding: 20px 10px ;
+  margin-bottom: 10px;
+}
+
 #notes {
-    margin-top:100px;
+    margin:100px 0PX;;
+
 }
 
 #notes .note {

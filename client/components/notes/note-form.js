@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { reduxForm } from 'redux-form';
-import { createNote } from '../actions/notes.js';
+import { createNote } from '../../actions/notes.js';
 import  { Link } from 'react-router';
 
 
