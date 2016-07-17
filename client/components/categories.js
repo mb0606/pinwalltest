@@ -21,7 +21,7 @@ class Categories extends Component {
 
   render() {
     return (
-      <div id="categories">
+      <div id="categories" className="animated fadeInDown">
         <h2>Categories</h2>
         <a
           key={99}

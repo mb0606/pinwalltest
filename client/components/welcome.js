@@ -13,7 +13,7 @@ class Welcome extends Component {
    return (
      <div>
       <div id="banner">
-       <div className="banner_content">
+       <div className="banner_content animated fadeInRightBig">
          <h1>PinWall</h1>
          <p>Your personal or professional online <strong>Pinboard</strong>. Never forget an idea again.</p>
          <button className="button">
@@ -21,7 +21,7 @@ class Welcome extends Component {
          </button>
        </div>
      </div>
-     <div id="testimonial">
+     <div id="testimonial" className="animated fadeInLeftBig">
        <div className="welcome-wrapper">
        <i className="fa fa-quote-left" aria-hidden="true"></i>
          <p className="quote">Makes it so easy to share my ideas with everyone in my organization.</p>
@@ -32,17 +32,17 @@ class Welcome extends Component {
        <div className="callout_inner">
          <div className="welcome-wrapper">
            <div className="callout">
-             <i className="fa fa-thumb-tack" aria-hidden="true"></i>
+             <i className="fa fa-thumb-tack animated rotateIn" aria-hidden="true"></i>
              <h2>Online PinBoard</h2>
              <p>Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget.</p>
            </div>
            <div className="callout">
-             <i className="fa fa-rocket"></i>
+             <i className="fa fa-rocket animated rotateIn"></i>
              <h2>The Skies the limit</h2>
              <p>Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget.</p>
            </div>
            <div className="callout">
-             <i className="fa fa-bolt"></i>
+             <i className="fa fa-bolt animated rotateIn"></i>
              <h2>Lightning Fast</h2>
              <p>Built with React and NodeJS. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget.</p>
            </div>
