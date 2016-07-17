@@ -12,7 +12,6 @@ export function fetchNotes(orgId, catId) {
   return function(dispatch) {
     axios.get(url)
      .then(function(response) {
-       console.log('payload in fetchNotes=', response);
        dispatch({ type: NOTES, payload: response });
      })
    }
@@ -20,7 +19,6 @@ export function fetchNotes(orgId, catId) {
 
 
 export function showNote(note) {
-  console.log("note ::", note)
  return {
      type: CURRENT_NOTE,
      payload: note
@@ -28,22 +26,20 @@ export function showNote(note) {
 }
 
 export function showEditNote(note) {
-  console.log("note in show EDIT::", note)
  return {
      type: UPDATE_NOTE,
      payload: note
    }
 }
 export function getNoteCat(noteId) {
-  console.log("HELLO get note CAT ::", noteId)
   let url = `${ROOT_URL}/api/organizations/1/notes/${noteId}/categories`;
       return function(dispatch) {
         axios.get(url)
         .then(response => {
-          console.log("this IS CAT :: response ", response)
            dispatch({ type: NOTE_CAT , payload: response.data});
         })
         .catch(() => {
+            //Fix catch
             console.log("in catch err ");
 
         });
@@ -57,17 +53,16 @@ export function getNoteCat(noteId) {
 
 
 export function createNote(formProps, userId, orgId){
-  console.log("Inside create", formProps);
 
   const url = `${ROOT_URL}/api/organizations/${orgId}/users/${userId}/notes`
   return function(dispatch) {
     axios.post(url, formProps)
     .then(response => {
        dispatch({ type: CREATE_NOTE });
-       console.log("this is org ID ", orgId)
        browserHistory.push(`/organizations/${orgId}`);
     })
     .catch(() => {
+        // Fix catch
         console.log("in catch err ");
 
     });
@@ -77,7 +72,6 @@ export function createNote(formProps, userId, orgId){
 
 
 export function updateNote(formProps, orgId, noteId){
-  console.log("Inside update", formProps, orgId, noteId);
 
   const url = `${ROOT_URL}/api/organizations/${orgId}/notes/${noteId}`
   return function(dispatch) {
@@ -87,6 +81,7 @@ export function updateNote(formProps, orgId, noteId){
        browserHistory.push(`/organizations/${orgId}`);
     })
     .catch(() => {
+        // Fix catch
         console.log("in catch err ");
     });
    }
@@ -99,10 +94,10 @@ export function deleteNote(orgId, noteId){
     axios.delete(url)
     .then(response => {
        dispatch({ type: DESTROY_NOTE });
-       console.log("this is org ID ", orgId)
        browserHistory.push(`/organizations/${orgId}`);
     })
     .catch(() => {
+        // Fix catch
         console.log("in catch err ");
 
     });

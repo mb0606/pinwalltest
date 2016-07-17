@@ -13,12 +13,11 @@ export default class Wall extends Component {
 
   componentWillMount() {
     this.props.fetchNotes(this.props.params.orgId);
-    this.props.fetchCategories();
+    this.props.fetchCategories(this.props.params.orgId);
 
   }
 
   renderNotes() {
-    console.log("render Notes", this.props.notes)
     return this.props.notes.map(note => {
       let path = `/organizations/${note.organizationId}/notes/${note.id}`;
       return (

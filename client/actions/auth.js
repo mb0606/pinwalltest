@@ -2,15 +2,14 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import { AUTH_USER, UNAUTH_USER, AUTH_ERROR , ALL_ORGS} from './types';
 
+//Do we need to change ROOT_URL?
 const ROOT_URL = 'http://localhost:3000';
 
 export function fetchOrgs() {
-  console.log("inside fetch ORG ")
   let url = `${ROOT_URL}/api/organizations`;
   return function(dispatch) {
     axios.get(url)
      .then(function(response) {
-       console.log('payload in fetchORGS=', response);
        dispatch({ type: ALL_ORGS, payload: response.data });
      })
    }
@@ -18,7 +17,6 @@ export function fetchOrgs() {
 
 
  export function signinUser(formProps) {
-    console.log("auth sign IN user " ,formProps)
     const orgId = formProps.organizationId;
 
    return function(dispatch) {
@@ -27,7 +25,6 @@ export function fetchOrgs() {
          const data = {};
          data.orgId = orgId;
          data.currentUser = response.data.currentUser;
-         console.log("This DATA in AUTH" ,data)
          dispatch({ type: AUTH_USER, payload: data })
          localStorage.setItem('token', response.data.token);
          localStorage.setItem('currentUser', response.data.currentUser);
@@ -35,7 +32,6 @@ export function fetchOrgs() {
          browserHistory.push(`/organizations/${orgId}`);
        })
        .catch(() => {
-         console.log("in catch err ");
          dispatch(authError('Bad login info'));
        });
    }
@@ -43,20 +39,17 @@ export function fetchOrgs() {
 
 
 export function signupUser(formProps) {
-    console.log("inside auth", formProps)
     const orgId = formProps.organizationId;
-  return function(dispatch){
+    return function(dispatch){
     axios.post(`${ROOT_URL}/api/users/signup`, formProps)
     .then(response => {
         dispatch({type: AUTH_USER})
-        console.log("HEADERS", response)
         localStorage.setItem('token', response.data.token);
         localStorage.setItem('currentUser', response.data.currentUser);
         localStorage.setItem('orgId', orgId)
         browserHistory.push(`/organizations/${orgId}`);
     })
     .catch(() => {
-      console.log("in catch err ");
       dispatch(authError('Bad Signup info'));
     });
   }

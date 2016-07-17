@@ -11,7 +11,6 @@ const INITIAL_STATE = { authInfo: {currentUser:"", orgId:""}, authenticated:null
 export default function(state = INITIAL_STATE , action) {
   switch(action.type){
     case AUTH_USER:
-          console.log("This is action in AUTH reducers", action.payload)
       return { ...state, error: '', authenticated: true , authInfo:action.payload };
     case ALL_ORGS:
       return { ...state, allOrgs: action.payload };

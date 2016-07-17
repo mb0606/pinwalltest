@@ -5,7 +5,6 @@ import    { Link }          from 'react-router';
 
 class Signin extends Component {
    handleFormSubmit(formProps) {
-     console.log(formProps);
      this.props.signinUser(formProps);
    }
   //
@@ -36,8 +35,8 @@ class Signin extends Component {
 
                         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 
-                            <div className="form-group" >
-                              <label id="org" for="Select-Org">Please select your organization</label>
+                            <div className={`form-group ${organizationId.touched && organizationId.error ? 'has-error' : ''}`} >
+                              <label className="control-label" id="org" for="Select-Org">Please select your organization</label>
                                <select name="Select-Org" className="form-control" {...organizationId} required>
                                 <option>choose ...</option>
                                 { this.props.allOrgs.map( org => <option key={org.id} value={org.id}>{org.name}</option>) }
@@ -46,18 +45,20 @@ class Signin extends Component {
 
 
 
-                          <div className="form-group">
-                            <label>Email</label>
-                            <input className="form-control" type="email" {...email} />
+                          <div className={`form-group ${email.touched && email.error ? 'has-error' : ''}`}>
+                          {email.touched && email.error ? <div className="control-label">{email.error}</div> : ''}
+                            <label className="control-label">Email</label>
+                            <input type="email" className="form-control" type="email" {...email} />
                           </div>
-                          <div className="form-group">
-                            <label >Password</label>
-                            <input className="form-control" {...password}/>
-                              {password.touched && password.error && <div className="alert alert-danger">{password.error}</div>}
+
+                          <div className={`form-group ${password.touched && password.error ? 'has-error' : ''}`}>
+                          {password.touched && password.error ? <div className="control-label">{password.error}</div> : ''}
+                            <label className="control-label">Password</label>
+                            <input type="password" className="form-control" {...password}/>
                           </div>
 
 
-                          <button className="button" type="submit">Sign up</button>
+                          <button className="button" type="submit">Login</button>
                         </form>
 
                 </div>
@@ -71,13 +72,33 @@ class Signin extends Component {
   }
 }
 
+
+function validate(formProps){
+  const errors = {};
+  if(!formProps.email) {
+    errors.email = "You must enter your email";
+  }
+
+  if(!formProps.password) {
+    errors.password = "You must enter your password";
+  }
+
+  if(formProps.organizationId) {
+      if(formProps.organizationId === "" || formProps.organizationId === "choose ..." ){
+        errors.organizationId = "You must choose an organization to Sign up with"
+      }
+  }
+
+  return errors;
+}
+
 function mapStateToProps(state){
-//  console.log(state.auth.allOrgs)
   return { allOrgs: state.auth.allOrgs}
 
 }
 
 export default reduxForm({
   form: 'signin',
-  fields: ['organizationId', 'email', 'password']
+  fields: ['organizationId', 'email', 'password'],
+  validate
 }, mapStateToProps,{signinUser:signinUser} )(Signin);

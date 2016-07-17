@@ -7,9 +7,7 @@ import { fetchNotes } from '../actions/notes.js';
 
 class Categories extends Component {
   renderCategories() {
-    console.log("CAYEGOR", this.props.auth)
     const orgId = this.props.allState.auth.authInfo.orgId;
-    console.log("inside render CAT ")
     const categories = this.props.allState.categories.categories
     return categories.map(category => {
       return (
@@ -36,7 +34,6 @@ class Categories extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("this cat !!!!!!!!!!!!!!!", state)
   return { allState: state};
 
 }

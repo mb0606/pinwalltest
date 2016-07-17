@@ -7,7 +7,6 @@ import    { Link }          from 'react-router';
 class Signup extends Component {
 
   handleFormSubmit(formProps){
-    console.log("this is form props", formProps)
     this.props.signupUser(formProps);
   }
   renderAlert(){
@@ -22,6 +21,7 @@ class Signup extends Component {
 
   render(){
     const { handleSubmit, fields: {organizationId, username, firstname, lastname ,email, password, passwordConfirm}} = this.props;
+    console.log("HEODJEJDODE",organizationId.value )
     return (
 
       <div className="wrapper">
@@ -37,8 +37,8 @@ class Signup extends Component {
 
                         <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
 
-                            <div className="form-group" >
-                              <label id="org" for="Select-Org">Please select your organization</label>
+                            <div className={`form-group ${organizationId.touched && organizationId.error ? 'has-error' : ''}`} >
+                              <label className="control-label" id="org" for="Select-Org">Please select your organization</label>
                                <select name="Select-Org" className="form-control" {...organizationId} required>
                                 <option>choose ...</option>
                                 { this.props.allOrgs.map( org => <option key={org.id} value={org.id}>{org.name}</option>) }
@@ -58,18 +58,22 @@ class Signup extends Component {
                             <label>Lastname</label>
                             <input className="form-control"  {...lastname}/>
                           </div>
-                          <div className="form-group">
-                            <label>Email</label>
+
+                          <div className={`form-group ${email.touched && email.error ? 'has-error' : ''}`}>
+                          {email.touched && email.error ? <div className="control-label">{email.error}</div> : ''}
+                            <label className="control-label">Email</label>
                             <input className="form-control" type="email" {...email} />
                           </div>
-                          <div className="form-group">
-                            <label >Password</label>
-                            <input className="form-control" {...password}/>
-                              {password.touched && password.error && <div className="alert alert-danger">{password.error}</div>}
+
+                          <div className={`form-group ${password.touched && password.error ? 'has-error' : ''}`}>
+                          {password.touched && password.error ? <div className="control-label">Your passwords have to match</div> : ''}
+                            <label className="control-label" >Password</label>
+                            <input type="password" className="form-control" {...password}/>
+
                           </div>
-                          <div className="form-group">
-                            <label>Password Confirm</label>
-                            <input className="form-control" {...passwordConfirm}/>
+                          <div className={`form-group ${password.touched && password.error ? 'has-error' : ''}`}>
+                            <label className="control-label">Password Confirm</label>
+                            <input type="password" className="form-control" {...passwordConfirm}/>
                           </div>
                            {this.renderAlert()}
                           <button className="button" type="submit">Sign up</button>
@@ -91,11 +95,20 @@ function validate(formProps){
     errors.password = 'Passwords must match'
   }
 
+  if(!formProps.email) {
+    errors.email = "You must enter your email";
+  }
+
+  if(formProps.organizationId) {
+      if(formProps.organizationId === "" || formProps.organizationId === "choose ..." ){
+        errors.organizationId = "You must choose an organization to Sign up with"
+      }
+  }
+
   return errors;
 }
 
 function mapStateToProps(state){
-//  console.log(state.auth.allOrgs)
   return { allOrgs: state.auth.allOrgs}
 
 }
