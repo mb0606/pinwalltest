@@ -1,5 +1,5 @@
 #banner {
-    margin-top:60px;
+    margin-top:70px;
   background-image: url("./images/welcome_banner_image.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -30,6 +30,15 @@
   font-size: 1.5em;
   color: #afb0b0;
   padding: 3.5em 0;
+  position: relative;
+}
+#testimonial i {
+position: absolute;
+    left: 43%;
+    top: 30px;
+    font-size: 8em;
+    color: rgba(0,0,0,.03);
+
 }
 #testimonial .quote {
   margin: 0 0 .5em 0;

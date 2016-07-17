@@ -23,7 +23,8 @@ class Welcome extends Component {
      </div>
      <div id="testimonial">
        <div className="welcome-wrapper">
-         <p className="quote">"The greatest notebook application. Ever."</p>
+       <i className="fa fa-quote-left" aria-hidden="true"></i>
+         <p className="quote">Makes it so easy to share my ideas with everyone in my organization.</p>
          <p className="name"> - Jon Smith</p>
        </div>
      </div>
@@ -60,7 +61,7 @@ class Welcome extends Component {
      </div>
     <footer>
         <p>
-          &copy; Marco Berardini
+          &copy; GrapeFruit Ent.
       </p>
       </footer>
 
