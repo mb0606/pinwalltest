@@ -26,7 +26,7 @@ class Signup extends Component {
 
       <div className="wrapper">
         <div className="row">
-          <div className="col-xs-12 col-md-8 col-md-offset-2">
+          <div className="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
             <div className="form-wrapper">
               <div className="panel panel-default">
                 <div className="panel-body">
@@ -47,7 +47,7 @@ class Signup extends Component {
 
 
                           <div className="form-group">
-                            <label>Username:</label>
+                            <label>Username</label>
                             <input className="form-control" {...username}/>
                           </div>
                           <div className="form-group">
@@ -98,6 +98,9 @@ function validate(formProps){
   if(!formProps.email) {
     errors.email = "You must enter your email";
   }
+     if(!formProps.organizationId){
+        errors.organizationId = "You must choose an organization to Sign up with"
+    }
 
   if(formProps.organizationId) {
       if(formProps.organizationId === "" || formProps.organizationId === "choose ..." ){

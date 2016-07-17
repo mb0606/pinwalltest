@@ -40,7 +40,7 @@ class NoteForm extends Component {
 
         <div className="wrapper">
             <div className="row">
-                <div className="col-xs-12 col-md-8 col-md-offset-2">
+                <div className="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                 <div className="form-wrapper">
 
                     <div className="panel panel-default">

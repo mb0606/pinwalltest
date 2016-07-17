@@ -27,7 +27,7 @@ class Note extends Component {
     return(
 
       <div className="row">
-        <div className="col-md-6 col-md-offset-3" >
+        <div className="col-md-8 col-md-offset-2 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1" >
           <div className="spacer"></div>
             <div className="panel panel-default">
               <div className="panel-body">

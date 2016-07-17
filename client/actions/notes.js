@@ -40,7 +40,7 @@ export function getNoteCat(noteId) {
         })
         .catch(() => {
             //Fix catch
-            console.log("in catch err ");
+            console.log("in catch err");
 
         });
       }
