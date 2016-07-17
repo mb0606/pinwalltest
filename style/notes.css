@@ -8,12 +8,14 @@
 }
 
 #categories a{
+  color:#33CD99;
   padding: 0 15px;
   font-size: 1.4em;
   border-right: 1px solid #ddd;
 
 }
 #categories a:hover {
+    color: rgba(0,0,0,.7);
   text-decoration: none;
 }
 #categories a:last-child  {

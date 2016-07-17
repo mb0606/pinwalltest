@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
 import { updateNote } from '../../actions/notes.js';
 import  { Link } from 'react-router';
@@ -60,7 +60,7 @@ class NoteFormEdit extends Component {
 
                               <textarea classaName="form-control" rows="10" {...content}/>
 
-                            <button type="submit">Submit</button>
+                            <button classaName="button" type="submit">Submit</button>
                           </form>
                           </div>
                         </div>

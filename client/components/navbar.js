@@ -1,15 +1,46 @@
 import React, { Component } from 'react';
 import        { Link }      from 'react-router';
 import        { connect }   from 'react-redux';
+import      { signoutUser } from '../actions/auth.js';
 
 
 
 class NavBar extends Component {
 
 
+  renderLinks() {
+    console.log("LOCAL STORAGE IN NAVBAR", localStorage)
+
+    if (this.props.authenticated) {
+        const userId  = localStorage.getItem('currentUser');
+        const orgId   = localStorage.getItem('orgId');
+
+      return (
+        <ul className="nav navbar-nav navbar-right">
+            <li>
+                <Link to={"/organizations/" + orgId + "/" +"users/" + userId + "/notes"}>Create Note </Link>
+            </li>
+            <li>
+                <a
+                onClick={() => this.props.signoutUser()}
+                >Logout</a>
+            </li>
+     </ul>
+          )
+
+    } else {
+      return (
+        <ul className="nav navbar-nav navbar-right">
+            <li>
+              <Link to="/signin">Login</Link>
+            </li>
+        </ul>
+          )
+    }
+
+  }
 
   render() {
-    console.log("NAVBAR", this.params)
     return(
       <div>
         <nav className="navbar navbar-fixed-top navbar-default">
@@ -23,7 +54,7 @@ class NavBar extends Component {
                 <span className="icon-bar" />
               </button>
               <Link to={"/"} className="navbar-brand" href="#">
-                <img alt="Brand" src="/style/images/white_PiNWALL.svg" />
+                <img alt="Brand" src="/style/images/white_PiNWALL1.svg" />
               </Link>
             </div>
             {/* Collect the nav links, forms, and other content for toggling */}
@@ -33,14 +64,10 @@ class NavBar extends Component {
                   <input type="text" className="form-control" placeholder="Search" />
                 </div>
               </form>
-              <ul className="nav navbar-nav navbar-right">
-              <li> <Link to={"/organizations/" + "1" + "/" +
-               "users/1" + "/notes"}>Create Note </Link></li>
-               <li>  <a href="#">Login</a> </li>
-               <li>  <a href="#">Logout</a> </li>
 
-              </ul>
-            </div>{/* /.navbar-collapse */}
+                {this.renderLinks()}
+
+            </div>
           </div>
         </nav>
 
@@ -51,4 +78,11 @@ class NavBar extends Component {
 }
 
 
-export default connect(null)(NavBar);
+function mapStateToProps(state) {
+  console.log("this is state in the NAVBAR ", state);
+  return {
+    authenticated: state.auth.authenticated
+  }
+}
+
+export default connect(mapStateToProps, {signoutUser:signoutUser})(NavBar);

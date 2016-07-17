@@ -77,7 +77,7 @@ class NoteForm extends Component {
 
                               <textarea classaName="form-control" rows="10" {...content}/>
 
-                            <button type="submit">Submit</button>
+                            <button classaName="button" type="submit">Submit</button>
                           </form>
                           </div>
                         </div>

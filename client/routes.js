@@ -9,6 +9,10 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 // components and reducers from our app
 import App          from './components/app';
 import Welcome      from './components/welcome';
+import RequireAuth  from './components/auth/require_auth';
+import Signin       from './components/auth/signin';
+import Signout      from './components/auth/signout';
+import Signup       from './components/auth/signup';
 import Wall         from './components/wall';
 import Note         from './components/notes/show-note';
 import NoteForm     from './components/notes/note-form';
@@ -22,6 +26,9 @@ ReactDOM.render(
     <Router history={browserHistory}>
         <Route path="/" component={App}>
         <IndexRoute component={Welcome}/>
+        <Route path="signin"  component={Signin} />
+        <Route path="signout" component={Signout} />
+        <Route path="signup"  component={Signup} />
         <Route path="organizations/:orgId" component={Wall} />
         <Route path="organizations/:orgId/notes/:noteId" component={Note} />
             <Route path="organizations/:orgId/users/:userId/notes" component={NoteForm} />
