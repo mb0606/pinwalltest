@@ -13,11 +13,12 @@
     display: inline;
 }
  a {
-   color: #16EBE3;
+     width:100%;
+   color: #33CD99;
    text-decoration: none;
  }
  a:hover {
-   color: white;
+   color: #2B2E2E;
  }
 .wrapper {
     margin-top: 100px;

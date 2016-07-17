@@ -6,11 +6,12 @@ import { fetchNotes } from '../actions/notes.js';
 
 
 class Categories extends Component {
-
   renderCategories() {
-    let orgId = 1;
+    console.log("CAYEGOR", this.props.auth)
+    const orgId = this.props.allState.auth.authInfo.orgId;
     console.log("inside render CAT ")
-    return this.props.categories.map(category => {
+    const categories = this.props.allState.categories.categories
+    return categories.map(category => {
       return (
         <a
           key={category.id}
@@ -24,6 +25,10 @@ class Categories extends Component {
     return (
       <div id="categories">
         <h2>Categories</h2>
+        <a
+          key={99}
+          onClick={() => this.props.fetchNotes(this.props.allState.auth.authInfo.orgId)}> All
+        </a>
         {this.renderCategories()}
       </div>
     )
@@ -31,8 +36,9 @@ class Categories extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("this cat", state.categories)
-  return { categories: state.categories.categories};
+  console.log("this cat !!!!!!!!!!!!!!!", state)
+  return { allState: state};
+
 }
 
 

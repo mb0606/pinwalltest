@@ -24,7 +24,11 @@ export function fetchOrgs() {
    return function(dispatch) {
      axios.post(`${ROOT_URL}/api/users/login`, formProps)
        .then(response => {
-         dispatch({type: AUTH_USER})
+         const data = {};
+         data.orgId = orgId;
+         data.currentUser = response.data.currentUser;
+         console.log("This DATA in AUTH" ,data)
+         dispatch({ type: AUTH_USER, payload: data })
          localStorage.setItem('token', response.data.token);
          localStorage.setItem('currentUser', response.data.currentUser);
          localStorage.setItem('orgId', orgId)
@@ -57,14 +61,6 @@ export function signupUser(formProps) {
     });
   }
 }
-//
-// export function authError(error) {
-//   return {
-//     type: AUTH_ERROR,
-//     payload: error
-//   };
-// }
-//
  export function signoutUser() {
 
     return function(dispatch){
@@ -78,6 +74,14 @@ export function signupUser(formProps) {
     }
  }
 
+//
+// export function authError(error) {
+//   return {
+//     type: AUTH_ERROR,
+//     payload: error
+//   };
+// }
+//
 // export function fetchMessage() {
 //   return function(dispatch) {
 //     axios.get(ROOT_URL, {headers: { Auth: localStorage.getItem('token')}})

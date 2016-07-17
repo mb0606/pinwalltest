@@ -1,5 +1,5 @@
 #banner {
-	margin-top:60px;
+    margin-top:60px;
   background-image: url("./images/welcome_banner_image.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -61,7 +61,7 @@
 }
 #callouts .callout i {
   font-size: 2.5rem;
-  color: #16EBE3;
+  color: #33CD99;
 }
 #callouts .callout h2 {
   weight: 700;

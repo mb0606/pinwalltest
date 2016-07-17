@@ -8,15 +8,31 @@ import      { signoutUser } from '../actions/auth.js';
 class NavBar extends Component {
 
 
-  renderLinks() {
-    console.log("LOCAL STORAGE IN NAVBAR", localStorage)
+    renderBrand() {
+        const orgId   = "" || this.props.auth.authInfo.orgId;
+        if (this.props.auth.authenticated) {
+            console.log("BRAND LINK CHANGE ")
+            return <Link to={"/organizations/" + orgId} className="navbar-brand" >
+                    <img alt="Brand" src="/style/images/white_PiNWALL1.svg" />
+                   </Link>
+        } else {
+            return <Link to={"/"} className="navbar-brand" >
+                    <img alt="Brand" src="/style/images/white_PiNWALL1.svg" />
+                   </Link>
+        }
+    }
 
-    if (this.props.authenticated) {
-        const userId  = localStorage.getItem('currentUser');
-        const orgId   = localStorage.getItem('orgId');
+   renderLinks() {
+
+    if (this.props.auth.authenticated) {
+        const userId  = "" || this.props.auth.authInfo.currentUser ;
+        const orgId   = "" || this.props.auth.authInfo.orgId;
+        console.log("this is in nav bar localstorage", orgId,userId)
+
 
       return (
         <ul className="nav navbar-nav navbar-right">
+
             <li>
                 <Link to={"/organizations/" + orgId + "/" +"users/" + userId + "/notes"}>Create Note </Link>
             </li>
@@ -53,9 +69,7 @@ class NavBar extends Component {
                 <span className="icon-bar" />
                 <span className="icon-bar" />
               </button>
-              <Link to={"/"} className="navbar-brand" href="#">
-                <img alt="Brand" src="/style/images/white_PiNWALL1.svg" />
-              </Link>
+                {this.renderBrand()}
             </div>
             {/* Collect the nav links, forms, and other content for toggling */}
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -81,7 +95,8 @@ class NavBar extends Component {
 function mapStateToProps(state) {
   console.log("this is state in the NAVBAR ", state);
   return {
-    authenticated: state.auth.authenticated
+    auth: state.auth
+
   }
 }
 

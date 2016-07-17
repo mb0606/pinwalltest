@@ -2,6 +2,7 @@ import React          from 'react';
 import ReactDOM       from 'react-dom';
 import { Provider }   from 'react-redux';
 import reduxThunk     from 'redux-thunk';
+import { AUTH_USER }  from './actions/types';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
@@ -20,19 +21,25 @@ import NoteFormEdit from './components/notes/note-form-edit';
 import reducers     from './reducers';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
+const store = createStoreWithMiddleware(reducers)
+const token = localStorage.getItem('token');
+
+if(token) {
+  store.dispatch({type: AUTH_USER})
+}
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={store}>
     <Router history={browserHistory}>
         <Route path="/" component={App}>
         <IndexRoute component={Welcome}/>
         <Route path="signin"  component={Signin} />
         <Route path="signout" component={Signout} />
         <Route path="signup"  component={Signup} />
-        <Route path="organizations/:orgId" component={Wall} />
-        <Route path="organizations/:orgId/notes/:noteId" component={Note} />
-            <Route path="organizations/:orgId/users/:userId/notes" component={NoteForm} />
-            <Route path="organizations/:orgId/users/:userId/notes/:noteId" component={NoteFormEdit} />
+        <Route path="organizations/:orgId" component={RequireAuth(Wall)} />
+        <Route path="organizations/:orgId/notes/:noteId" component={RequireAuth(Note)} />
+            <Route path="organizations/:orgId/users/:userId/notes" component={RequireAuth(NoteForm)} />
+            <Route path="organizations/:orgId/users/:userId/notes/:noteId" component={RequireAuth(NoteFormEdit)} />
         </Route>
     </Router>
   </Provider>
